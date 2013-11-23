@@ -1,5 +1,5 @@
 ;(function($) {
-	$.LocalBoarsAPI = function( ) {
+	$.LocalBoardsAPI = function( ) {
 		var defaults = {
 			domain: 'http://api.localboards.org',
 			pageIndex: 0,
@@ -12,6 +12,16 @@
 			onCountyRequest: function( success, message, data ) {
 				if( plugin.onCountyRequest ) {
 					plugin.onCountyRequest( success, data, message );
+				}
+			},
+			onBoardListRequest: function( success, message, data ) {
+				if( plugin.onBoardListRequest ) {
+					plugin.onBoardListRequest( success, data, message );
+				}
+			},
+			onBoardRequest: function( success, message, data ) {
+				if( plugin.onBoardRequest ) {
+					plugin.onBoardRequest( success, data, message );
 				}
 			}
 		}
