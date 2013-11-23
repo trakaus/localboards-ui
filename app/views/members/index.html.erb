@@ -1,0 +1,23 @@
+<h1>Listing members</h1>
+<br />
+<div class="row">
+  <ul class="thumbnails list-unstyled" data-bind="foreach: members()">
+    <li class="span3">
+      <div class="thumbnail" style="padding: 0">
+        <div style="padding:4px">
+          <img alt="300x200" style="width: 100%" src="http://placehold.it/200x150">
+        </div>
+        <div class="caption">
+          <h2 data-bind="text: name">Name</h2>
+          <p data-bind="text: description">This description</p>
+        </div>
+        <div class="modal-footer" style="text-align: left">
+          <div class="row-fluid">
+            <div class="span4"><b>1</b><br/><small>GROUPS</small></div>
+            <div class="span4"><b>2</b><br/><small>YEARS</small></div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
