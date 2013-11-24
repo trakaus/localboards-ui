@@ -15,7 +15,7 @@
             <div class="modal-footer" style="text-align: left">
               <div class="row-fluid">
                 <div class="span4"><b data-bind="text: size">1</b><br/><small>SEATS</small></div>
-                <div class="span4"><b data-bind="text: openSeats">1</b><br/><small>SEATS<br />OPEN</small></div>
+                <div class="span4"><b data-bind="text: openSeats">1</b><br/><small>OPEN</small></div>
                 <div class="span4">
                 <!-- ko if: isActive -->
                 <b>IS</b>
@@ -76,6 +76,9 @@
       <div class="member" data-bind="with: person()">
         <span class="memberName" data-bind="text: fullName"></span>
         <!-- ko if: $parent.appointedDate -->
+        (Appointed: <span data-bind="text: $parent.appointedDate"></span>)
+        <!-- /ko -->
+        <!-- ko if: appointedDate -->
         (Appointed: <span data-bind="text: $parent.appointedDate"></span>)
         <!-- /ko -->
       </div>

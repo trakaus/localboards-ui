@@ -17,12 +17,11 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
-.padded {
-}
 
 .colorbar {
-	width: 260px;
+	width: 98%;
 	height: 10px;
+	margin: 0 auto;
 }
 
 .blue {
