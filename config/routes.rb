@@ -1,5 +1,7 @@
 LocalboardsUi::Application.routes.draw do
 
+  devise_for :admins
+
   resources :members
 
   resources :boards

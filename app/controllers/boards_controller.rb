@@ -20,4 +20,12 @@ class BoardsController < ApplicationController
   		@id = params[:id]
 		end
   end
+  
+  def edit
+  	if current_user
+  		render :edit
+  	else
+  		redirect_to root_url
+  	end
+  end
 end
