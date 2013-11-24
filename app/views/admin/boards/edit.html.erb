@@ -1,0 +1,99 @@
+<h1 data-bind="text: title">Edit Board: board</h1>
+<div class="leftColumn">
+	<div class="badge-container">
+	    <div class="row">
+	      <ul class="thumbnails list-unstyled">
+	        <li class="span3">
+	          <div class="thumbnail" style="padding: 0">
+	            <div style="padding:4px">
+	              <div class="colorbar blue"></div>
+	            </div>
+	            <div class="caption">
+	              <p>Help Information:<br>How to edit this form.</p>
+	            </div>
+	            <div class="modal-footer" style="text-align: left">
+	              <div class="row-fluid">
+	                Note: Remember to save your information!
+	              </div>
+	            </div>
+	          </div>
+	        </li>
+	      </ul>
+	    </div>
+	</div>
+</div>
+<div class="rightColumn">
+	<h3>Board Details</h3>
+	<form>
+		<ul>
+			<li>
+				<label for="isactive">Active</label>
+				<select id="isactive" name="isactive" data-bind="">
+					<option value="true">Yes</option>
+					<option value="false">No</option>
+				</select>
+			</li>
+			<li>
+				<label for="title">Title</label>
+				<input type="text" id="title" name="title" data-bind="text: title"/>
+			</li>
+			<li>
+				<label for="state_id">State</label>
+				<select id="state_id" name="state_id" data-bind="foreach: states">
+				</select>
+			</li>
+			<li>
+				<label for="county_id">County</label>
+				<select id="county_id" name="county_id" data-bind="foreach: counties">
+					<option value="0">Not Relavant</option>
+				</select>
+			</li>
+			<li>
+				<label for="city_id">City</label>
+				<select id="city_id" name="city_id" data-bind="foreach: cities">
+					<option value="0">Not Relavant</option>
+				</select>
+			</li>
+			<li>
+				<label for="department_id">Departments</label>
+				<select id="department_id" name="department_id" data-bind="foreach: departments">
+				</select>
+			</li>
+			<li>
+				<label for="seats">Seats</label>
+				<input type="text" id="seats" name="seats" data-bind="text: seats"/>
+			</li>
+			<li>
+				<label for="title">Seats (Alternate)</label>
+				<input type="text" id="alternating_seats" name="alternating_seats" data-bind="text: alternating_seats"/>
+			</li>
+			<li>
+				<label for="title">Website</label>
+				<input type="text" id="url" name="url" data-bind="text: url"/>
+			</li>
+			<li>
+				<label for="title">Meeting Place</label>
+				<input type="text" id="meeting_place" name="meeting_place" data-bind="text: meeting_place"/>
+			</li>
+			<li>
+				<label for="title">Meeting Time</label>
+				<input type="text" id="meeting_time" name="meeting_time" data-bind="text: meeting_time"/>
+			</li>
+			<li>
+				<label for="title">Meeting Date(s)</label>
+				<input type="text" id="meeting_dates" name="meeting_dates" data-bind="text: meeting_dates"/>
+			</li>
+			<li>
+				<label for="title">Duties</label>
+				<textarea id="duties" name="duties" data-bind="html: duties"></textarea>
+			</li>
+			<li>
+				<label for="title">Qualifications</label>
+				<textarea id="qualifications" name="qualifications" data-bind="html: qualifications"></textarea>
+			</li>
+			<li>
+				<label for="title">Cron (Special: Calculated)</label>
+				<input type="text" id="meeting_cron" name="meeting_cron" data-bind="text: meeting_cron"/>
+			</li>
+	</form>
+</div>
