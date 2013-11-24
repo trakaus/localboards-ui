@@ -39,17 +39,31 @@ var BoardViewModel = function() {
 	self.meetingDates = ko.observable();
 	self.meetingPlace = ko.observable();
 	self.meetingTime = ko.observable();
-	self.openSeats = ko.observable();
 	self.members = ko.observableArray();
 	self.openings = ko.observableArray();
 	self.seats = ko.observableArray();
+	self.openSeats = ko.computed(function() {
+		if (!isNaN(self.members().length) && !isNaN(self.size())) {
+			var diff = self.size() - self.members().length;
+			if (diff < 0) {
+				return 0;
+			} else {
+				return self.size() - self.members().length;
+			}
+		} else if (self.members().length === 0) {
+			return self.size();
+		} else {
+			return null;
+		}
+	}, this);
 
 	self.addSeat = function (data) {
 		if (this.seats)
 			this.seats.push(data);
 	};
 	self.addMember = function (data) {
-		this.members.push(data);
+		if (data && data.isActive)
+			this.members.push(data);
 	};
 };
 
@@ -90,7 +104,6 @@ function writeData (data) {
 	vm.meetingDates(data.meeting_dates);
 	vm.meetingPlace(data.meeting_place);
 	vm.meetingTime(data.meeting_time);
-	vm.openSeats(0);
 
 	vm.members([]);
 	if (data.members)
@@ -163,7 +176,6 @@ var createNewBoard = function(data) {
 	this.meetingDates = data.meeting_dates;
 	this.meetingPlace = data.meeting_place;
 	this.meetingTime = data.meeting_time;
-	this.openSeats = 0;
 	this.members = [];
 	this.openings = [];
 };
