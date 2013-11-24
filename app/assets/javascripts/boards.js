@@ -101,10 +101,6 @@ function writeData (data) {
 	vm.openings([]);
 	if (data.openings)
 		vm.openings(data.openings);
-
-	vm.seats([]);
-	if (data.seats)
-		vm.seats(data.seats);
 }
 
 
@@ -208,14 +204,9 @@ function onBoardMemberListRequest(success, message, data) {
 function onBoardSeatListRequest(success, message, data) {
 	if (success) {
 		$.each(data, function() {
-			//alert(JSON.stringify(this));
-			if (this) {
-				var seat = new createNewSeat(this);
-				if (seat)
-					vm.addSeat(seat);
-			}
+			vm.addSeat(new createNewSeat(this));
 		});
-		//var apiMembers = api.getBoardMemberListFromStateBoardById('ne', id, 0, 1000);
+		api.getBoardMemberListFromStateBoardById('ne', id, 0, 1000);
 	}
 }
 function onMemberRequest(success, message, data) {
