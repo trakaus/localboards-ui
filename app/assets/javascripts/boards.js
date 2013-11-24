@@ -39,23 +39,25 @@ var BoardViewModel = function() {
 	self.meetingDates = ko.observable();
 	self.meetingPlace = ko.observable();
 	self.meetingTime = ko.observable();
+	self.meetingCron = ko.observable();
 	self.members = ko.observableArray();
 	self.nextOpening = ko.observable();
 	self.nextOpeningQualifications = ko.observable();
-	self.openings = ko.computed(function() {
-		return {
-			openings: self.nextOpening().split('|'),
-			qualifications: self.nextOpeningQualifications().split('|')
-		};
-	});
 
 
 	self.openings = ko.computed(function() {
 		var rval = [];
-		for (var i = 0; i < self.nextOpening().length; i++) {
-			rval.push({opening: self.nextOpening()[i], qualifications: self.nextOpeningQualifications()[i]});
+		if (self.nextOpening() && self.nextOpeningQualifications())
+		{
+			var openingArr = self.nextOpening().split('|');
+			var openingQualArr = self.nextOpeningQualifications().split('|');
+			for (var i = 0; i < self.nextOpening().length; i++) {
+				rval.push({opening: openingArr[i], qualifications: openingQualArr[i]});
+			}
+			return rval;
+		} else {
+			return null;
 		}
-		return rval;
 	});
 
 
@@ -128,6 +130,7 @@ function writeData (data) {
 	vm.meetingDates(data.meeting_dates);
 	vm.meetingPlace(data.meeting_place);
 	vm.meetingTime(data.meeting_time);
+	vm.meetingCron(data.meeting_cron);
 	vm.nextOpening(data.next_opening);
 	vm.nextOpeningQualifications(data.next_opening_qual);
 	alert(vm.nextOpening());
