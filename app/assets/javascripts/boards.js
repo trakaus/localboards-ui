@@ -60,7 +60,7 @@ api.onBoardRequest = onBoardRequest;
 
 
 if (isNaN(url[url.length - 1]) === true) {
-		var apiBoards = api.getBoardsByState('ne', 0, 25);
+		var apiBoards = api.getBoardsByState('ne', 0, 1);
 
 		// ADD MOCK DATA
 		// TODO: REMOVE
