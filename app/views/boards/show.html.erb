@@ -73,7 +73,7 @@
     <!-- /ko -->
   </div>
   <div class="openings">
-    <!-- ko if: openings().length > 0-->
+    <!-- ko if: openings() -->
     <h3>Openings</h3>
     <table>
       <theader>
@@ -84,8 +84,8 @@
       </theader>
       <tbody data-bind="foreach: openings()">
         <tr>
-          <td><span data-bind="date">N/A</span></td>
-          <td><span data-bind="position">N/A</span></td>
+          <td><span data-bind="opening">N/A</span></td>
+          <td><span data-bind="qualifications">N/A</span></td>
         </tr>
       </tbody>
     </table>
