@@ -37,12 +37,34 @@
 <div class="rightColumn">
   <div class="orgInfo">
     <h3>Meeting Info</h3>
-    <!-- ko if: url() -->
-    URL: <a data-bind="attr: { href: url }">Visit Website</a><br />
-    <!-- /ko -->
-    Meeting dates: <span data-bind="text: meetingDates">N/A</span><br />
-    Meeting place: <span data-bind="text: meetingPlace">N/A</span><br />
-    Meeting times: <span data-bind="text: meetingTime">N/A</span>
+    <table>
+      <tbody>
+        <!-- ko if: url -->
+        <tr>
+          <td>URL:</td>
+          <td><a data-bind="attr: { href: url }">Visit Website</a></td>
+        </tr>
+        <!-- /ko -->
+        <!-- ko if: meetingDates() -->
+        <tr>
+          <td>Meeting Dates:</td>
+          <td data-bind="text: meetingDates">N/A</td>
+        </tr>
+        <!-- /ko -->
+        <!-- ko if: meetingPlace() -->
+        <tr>
+          <td>Meeting Place:</td>
+          <td data-bind="text: meetingPlace">N/A</td>
+        </tr>
+        <!-- /ko -->
+        <!-- ko if: meetingTime() -->
+        <tr>
+          <td>Meeting Time:</td>
+          <td data-bind="text: meetingTime">N/A</td>
+        </tr>
+        <!-- /ko -->
+      </tbody>
+    </table>
   </div>
   <div class="qualifications">
     <!-- ko if: qualifications() -->
