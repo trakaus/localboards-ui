@@ -6,30 +6,30 @@
 			pageSize: 25,
 			onCountyListRequest: function( success, message, data ) {
 				if( plugin.onCountyListRequest ) {
-					plugin.onCountyListRequest( success, data, message );
+					plugin.onCountyListRequest( success, message, data );
 				}
 			},
 			onCountyRequest: function( success, message, data ) {
 				if( plugin.onCountyRequest ) {
-					plugin.onCountyRequest( success, data, message );
+					plugin.onCountyRequest( success, message, data );
 				}
 			},
 			onBoardListRequest: function( success, message, data ) {
 				if( plugin.onBoardListRequest ) {
-					plugin.onBoardListRequest( success, data, message );
+					plugin.onBoardListRequest( success, message, data );
 				}
 			},
 			onBoardRequest: function( success, message, data ) {
 				if( plugin.onBoardRequest ) {
-					plugin.onBoardRequest( success, data, message );
+					plugin.onBoardRequest( success, message, data );
 				}
 			}
 		}
-		
+
 		var plugin = this;
-		
+
 		plugin.settings = {};
-		
+
 		plugin.getCounties = function( state, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
@@ -52,7 +52,7 @@
 				}
 			});
 		}
-		
+
 		plugin.getCounty = function( state, county ) {
 			$.ajax({
 				type:"GET",
@@ -75,7 +75,7 @@
 				}
 			});
 		}
-		
+
 		plugin.getBoardsByState = function( state, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
@@ -98,7 +98,7 @@
 				}
 			});
 		}
-		
+
 		plugin.getBoardsByCity = function( state, city, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
@@ -121,7 +121,7 @@
 				}
 			});
 		}
-		
+
 		plugin.getBoardsByCounty = function( state, county, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
@@ -144,7 +144,7 @@
 				}
 			});
 		}
-		
+
 		plugin.getBoardFromCountyWithId = function( state, county, id ) {
 			$.ajax({
 				type:"GET",
@@ -167,7 +167,7 @@
 				}
 			});
 		}
-		
+
 		plugin.getBoardFromStateWithId = function( state, id ) {
 			$.ajax({
 				type:"GET",
@@ -178,7 +178,7 @@
 				dataType:"json",
 				success:function(data) {
 					if(data.success) {
-						plugin.settings.onBoardRequest(true, data.message, data.data);
+						plugin.settings.onBoardRequest(true, data.message, data);
 					} else {
 						plugin.settings.onBoardRequest(false, data.message, null);
 					}
@@ -190,8 +190,8 @@
 				}
 			});
 		}
-				
-		var init = function( ) { 
+
+		var init = function( ) {
 			plugin.settings = $.extend({}, defaults);
 		}
 
