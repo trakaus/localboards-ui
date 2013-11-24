@@ -62,8 +62,14 @@ var BoardViewModel = function() {
 			this.seats.push(data);
 	};
 	self.addMember = function (data) {
-		if (data && data.isActive)
+		if (data && data.isActive) {
+
+			$.each(this.seats(), function() {
+				if (this.id === data.boardSeatId)
+					data.title = this.title;
+			});
 			this.members.push(data);
+		}
 	};
 };
 
@@ -120,9 +126,11 @@ var createNewBoardMember = function(data) {
 	this.createdAt = data.created_at;
 	this.updatedAt = data.updated_at;
 	this.boardSeatId = data.board_seat_id;
+	this.boardMemberId = data.board_member_id;
 	this.isActive = data.is_active;
 	this.installationDate = data.installation_date;
 	this.appointmentDate = data.appointment_date;
+	this.title = null;
 	this.person = ko.observable();
 };
 var createNewPerson = function(data) {
@@ -137,13 +145,14 @@ var createNewPerson = function(data) {
 	}, this);
 };
 var createNewSeat = function(data) {
-	// alternate","board_id","created_at","id","is_active","period","qualifications","term_notes","updated_at"
+	// alternate","board_id","created_at","id","is_active","period","qualifications","term_notes","updated_at","title"
 	this.alternate = data.alternate;
 	this.boardId = data.board_id;
 	this.createdAt = data.created_at;
 	this.id = data.id;
 	this.isActive = data.is_active;
 	this.period = data.period;
+	this.title = data.title;
 	this.qualifications = data.qualifications;
 	this.termNotes = data.term_notes;
 	this.updatedAt = data.updated_at;
