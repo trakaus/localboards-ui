@@ -237,7 +237,7 @@
 					plugin.settings.onBoardMemberListRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardMemberFromCityBoardById = function( state, city, boardId, id ) {
 			$.ajax({
@@ -260,7 +260,7 @@
 					plugin.settings.onBoardMemberRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardMemberListFromCountyBoardById = function( state, county, id, pageIndex, pageSize ) {
 			$.ajax({
@@ -283,7 +283,7 @@
 					plugin.settings.onBoardMemberListRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardMemberFromCountyBoardById = function( state, county, boardId, id ) {
 			$.ajax({
@@ -306,7 +306,7 @@
 					plugin.settings.onBoardMemberRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardMemberListFromStateBoardById = function( state, id, pageIndex, pageSize ) {
 			$.ajax({
@@ -314,7 +314,7 @@
 				crossDomain: true,
 				accept:"application/json",
 				contentType:"application/json",
-				url:plugin.settings.domain+"/states/"+state+'/boards/'+id+'?pg='+pageIndex+'&pgSize='+pageSize,
+				url:plugin.settings.domain+"/states/"+state+'/boards/'+id+'/members?pg='+pageIndex+'&pgSize='+pageSize,
 				dataType:"json",
 				success:function(data) {
 					if(data.success) {
@@ -329,7 +329,7 @@
 					plugin.settings.onBoardMemberListRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardMemberFromStateBoardById = function( state, boardId ) {
 			$.ajax({
@@ -352,7 +352,7 @@
 					plugin.settings.onBoardMemberRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardSeatListFromCityBoardById = function( state, city, id, pageIndex, pageSize ) {
 			$.ajax({
@@ -375,7 +375,7 @@
 					plugin.settings.onBoardSeatListRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardSeatFromCityBoardById = function( state, city, boardId, id ) {
 			$.ajax({
@@ -398,7 +398,7 @@
 					plugin.settings.onBoardSeatRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardSeatListFromCountyBoardById = function( state, county, id, pageIndex, pageSize ) {
 			$.ajax({
@@ -421,7 +421,7 @@
 					plugin.settings.onBoardSeatListRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardSeatFromCountyBoardById = function( state, county, boardId, id ) {
 			$.ajax({
@@ -444,7 +444,7 @@
 					plugin.settings.onBoardSeatRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardSeatListFromStateBoardById = function( state, id, pageIndex, pageSize ) {
 			$.ajax({
@@ -452,7 +452,7 @@
 				crossDomain: true,
 				accept:"application/json",
 				contentType:"application/json",
-				url:plugin.settings.domain+"/states/"+state+'/boards/'+id+'?pg='+pageIndex+'&pgSize='+pageSize,
+				url:plugin.settings.domain+"/states/"+state+'/boards/'+id+'/seats?pg='+pageIndex+'&pgSize='+pageSize,
 				dataType:"json",
 				success:function(data) {
 					if(data.success) {
@@ -467,7 +467,7 @@
 					plugin.settings.onBoardSeatListRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardSeatFromStateBoardById = function( state, boardId ) {
 			$.ajax({
@@ -490,7 +490,7 @@
 					plugin.settings.onBoardSeatRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		plugin.getMemberFromStateById = function( state, id ) {
 			$.ajax({
@@ -513,7 +513,7 @@
 					plugin.settings.onBoardMemberRequest(false, notice, null);
 				}
 			});
-		}
+		};
 
 		var init = function( ) {
 			plugin.settings = $.extend({}, defaults);

@@ -16,31 +16,43 @@ var BoardListViewModel = function() {
 };
 
 var BoardViewModel = function() {
-	this.id = ko.observable();
-	this.localUrl = ko.observable();
+	var self = this;
 
-	this.cityId = ko.observable();
-	this.countyId = ko.observable();
-	this.stateId = ko.observable();
-	this.alternatingSeats = ko.observable();
-	this.departmentId = ko.observable();
+	self.id = ko.observable();
+	self.localUrl = ko.observable();
 
-	this.title = ko.observable();
-	this.duties = ko.observable();
-	this.qualifications = ko.observable();
-	this.createdAt = ko.observable();
-	this.isActive = ko.observable();
-	this.size = ko.observable();
-	this.url = ko.observable();
-	this.termLength = ko.observable();
-	this.updatedAt = ko.observable();
-	this.meetingDates = ko.observable();
-	this.meetingPlace = ko.observable();
-	this.meetingTime = ko.observable();
-	this.openSeats = ko.observable();
-	this.members = ko.observableArray();
-	this.openings = ko.observableArray();
-	this.seats = ko.observableArray();
+	self.cityId = ko.observable();
+	self.countyId = ko.observable();
+	self.stateId = ko.observable();
+	self.alternatingSeats = ko.observable();
+	self.departmentId = ko.observable();
+
+	self.title = ko.observable();
+	self.duties = ko.observable();
+	self.qualifications = ko.observable();
+	self.createdAt = ko.observable();
+	self.isActive = ko.observable();
+	self.size = ko.observable();
+	self.url = ko.observable();
+	self.termLength = ko.observable();
+	self.updatedAt = ko.observable();
+	self.meetingDates = ko.observable();
+	self.meetingPlace = ko.observable();
+	self.meetingTime = ko.observable();
+	self.openSeats = ko.observable();
+	self.members = ko.observableArray();
+	self.openings = ko.observableArray();
+	self.seats = ko.observableArray();
+
+	self.addSeat = function (data) {
+		//alert(JSON.stringify(data));
+		if (this.seats)
+			this.seats.push(data);
+	};
+	self.addMember = function (data) {
+		//alert(JSON.stringify(data));
+		this.members.push(data);
+	};
 };
 
 function toTitleCase(str) {
@@ -54,7 +66,7 @@ var getLocation = function(href) {
 };
 
 function buildLocalUrl (id) {
-	return 'http://' + getLocation(window.location).hostname + '/boards/' + id;
+	return 'http://' + getLocation(window.location).host + '/boards/' + id;
 }
 
 function writeData (data) {
@@ -70,7 +82,10 @@ function writeData (data) {
 	vm.qualifications(data.qualifications);
 	vm.createdAt(data.created_at);
 	vm.isActive(data.is_active);
-	vm.size(data.seats);
+	if (data.seats && data.seats === -1)
+		vm.size('OPEN');
+	else
+		vm.size(data.seats);
 	vm.url(data.url);
 	vm.termLength(data.term_length);
 	vm.updatedAt(data.updated_at);
@@ -94,8 +109,7 @@ function writeData (data) {
 
 
 var createNewBoardMember = function(data) {
-	this.memberId = data.member_id;
-	this.boardId = data.board_id;
+	this.memberId = data.id;
 	this.createdAt = data.created_at;
 	this.updatedAt = data.updated_at;
 	this.boardSeatId = data.board_seat_id;
@@ -105,10 +119,28 @@ var createNewBoardMember = function(data) {
 	this.person = ko.observable(); // will be updated with later API call
 };
 var createNewPerson = function(data) {
+	// id, created_at, updated_at, first_name, last_name, is_active
 	this.createdAt = data.created_at;
 	this.updatedAt = data.updated_at;
 	this.firstName = data.first_name;
 	this.lastName = data.last_name;
+	this.isActive = data.is_active;
+};
+var createNewSeat = function(data) {
+	// alternate","board_id","created_at","id","is_active","period","qualifications","term_notes","updated_at"
+	this.alternate = data.alternate;
+	this.boardId = data.board_id;
+	this.createdAt = data.created_at;
+	this.id = data.id;
+	this.isActive = data.is_active;
+	this.period = data.period;
+	this.qualifications = data.qualifications;
+	this.termNotes = data.term_notes;
+	this.updatedAt = data.updated_at;
+	this.member = ko.observable();
+	this.member({});
+	if (data.member)
+		this.member(data.member);
 };
 var createNewBoard = function(data) {
 	this.id = data.id;
@@ -124,7 +156,10 @@ var createNewBoard = function(data) {
 	this.qualifications = data.qualifications;
 	this.createdAt = data.created_at;
 	this.isActive = data.is_active;
-	this.size = data.seats;
+	if (data.seats && data.seats === -1)
+		this.size = 'OPEN';
+	else
+		this.size = data.seats;
 	this.url = data.url;
 	this.termLength = data.term_length;
 	this.updatedAt = data.updated_at;
@@ -135,10 +170,6 @@ var createNewBoard = function(data) {
 	this.members = [];
 	this.openings = [];
 };
-
-function addMember (data) {
-	vm.members.push(new createNewBoardMember(data));
-}
 
 function updateMemberWithPersonData (data) {
 	$.each(vm.members, function() {
@@ -161,14 +192,30 @@ function onBoardListRequest(success, message, data) {
 function onBoardRequest(success, message, data) {
 	if (success) {
 		writeData(data.data);
+		api.getBoardSeatListFromStateBoardById('ne', data.data.id, 0, 1000);
 	}
 }
 function onBoardMemberListRequest(success, message, data) {
 	if (success) {
 		$.each(data, function() {
-			addMember(data);
-			//var apiMemberInfo = api.getMemberById(data.member_id);
+			//alert(JSON.stringify(this));
+			var boardMember = new createNewBoardMember(this);
+			vm.addMember(boardMember);
+			var apiMemberInfo = api.getMemberFromStateById('ne', this.id);
 		});
+	}
+}
+function onBoardSeatListRequest(success, message, data) {
+	if (success) {
+		$.each(data, function() {
+			//alert(JSON.stringify(this));
+			if (this) {
+				var seat = new createNewSeat(this);
+				if (seat)
+					vm.addSeat(seat);
+			}
+		});
+		//var apiMembers = api.getBoardMemberListFromStateBoardById('ne', id, 0, 1000);
 	}
 }
 function onMemberRequest(success, message, data) {
@@ -180,17 +227,20 @@ function onMemberRequest(success, message, data) {
 api.onBoardListRequest = onBoardListRequest;
 api.onBoardRequest = onBoardRequest;
 api.onBoardMemberListRequest = onBoardMemberListRequest;
+api.onBoardSeatListRequest = onBoardSeatListRequest;
 api.onMemberRequest = onMemberRequest;
 
-// if we have a numeric (:id) value at end of path, we're querying a specific element
-if (isNaN(url[url.length - 1]) === true || id.length === 0) {
-	vm = new BoardListViewModel();
-	ko.applyBindings(vm);
-	var apiBoards = api.getBoardsByState('ne', 0, 25);
-} else {
-	vm = new BoardViewModel();
-	ko.applyBindings(vm);
-	var apiBoard = api.getBoardFromStateWithId('ne', id);
-	//var apiMembers = api.getBoardMembersByBoardId(id);
-}
+$(function() {
+	// if we have a numeric (:id) value at end of path, we're querying a specific element
+	if (isNaN(url[url.length - 1]) === true || id.length === 0) {
+		vm = new BoardListViewModel();
+		ko.applyBindings(vm);
+		var apiBoards = api.getBoardsByState('ne', 0, 25);
+	} else {
+		vm = new BoardViewModel();
+		ko.applyBindings(vm);
+		api.getBoardFromStateWithId('ne', id);
+	}
+});
+
 
