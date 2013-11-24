@@ -1,21 +1,12 @@
 <h1>View boards</h1>
 <br />
-<div class="row">
-  <ul class="thumbnails list-unstyled" data-bind="foreach: boards()">
-    <li class="span3">
-      <div class="thumbnail" style="padding: 0">
-        <div style="padding:4px">
-          <img alt="300x200" style="width: 100%" src="http://placehold.it/200x150">
-        </div>
-        <div class="caption">
-          <h2 data-bind="text: title">Name</h2>
-        </div>
-        <div class="modal-footer" style="text-align: left">
-          <div class="row-fluid">
-            <div class="span4"><b data-bind="text: size">1</b><br/><small>SEATS</small></div>
-          </div>
-        </div>
+<div class="row" data-bind="foreach: boards()">
+    <div class="span5">
+      <h4><a data-bind="attr: { href: localUrl }"><span data-bind="text: title"></span></a></h4>
+      <div class="seats">
+        <b data-bind="text: size">1</b> <small>SEATS</small>
       </div>
-    </li>
-  </ul>
+      <p data-bind="text: duties">Org Duties</p>
+    </div>
 </div>
+<hr />

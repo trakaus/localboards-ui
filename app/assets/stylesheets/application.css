@@ -18,5 +18,26 @@ body {
   padding-bottom: 20px;
 }
 .padded {
-	padding: 20px;
+}
+
+.colorbar {
+	width: 260px;
+	height: 10px;
+}
+
+.blue {
+	background-color: #78C0FF;
+}
+
+.seats {
+	margin-bottom:10px;
+}
+.leftColumn {
+	float:left;
+	width:30%;
+	min-width: 260px;
+}
+.rightColumn {
+	float:left;
+	width:70%;
 }

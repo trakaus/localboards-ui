@@ -1,13 +1,13 @@
-<!--<div data-bind="with: board">-->
 <h1 data-bind="text: title">Viewing board</h1>
 <br />
+<div class="leftColumn">
 <div class="badge-container">
   <div class="row">
     <ul class="thumbnails list-unstyled">
       <li class="span3">
         <div class="thumbnail" style="padding: 0">
           <div style="padding:4px">
-            <img alt="300x200" style="width: 100%" src="http://placehold.it/200x150">
+            <div class="colorbar blue"></div>
           </div>
           <div class="caption">
             <p data-bind="text: duties">This description</p>
@@ -22,6 +22,8 @@
     </ul>
   </div>
 </div>
+</div>
+<div class="rightColumn">
 <div class="orgInfo">
   <h3>Meeting Info</h3>
   Meeting dates: <span data-bind="text: meetingDates">N/A</span><br />
@@ -29,6 +31,7 @@
   Meeting times: <span data-bind="text: meetingTime">N/A</span>
 </div>
 <div class="openings">
+  <!-- ko if: openings().length > 0-->
   <h3>Openings</h3>
   <table>
     <theader>
@@ -44,29 +47,16 @@
       </tr>
     </tbody>
   </table>
+  <!-- /ko -->
 </div>
 <div class="members">
+  <!-- ko if: members().length > 0-->
   <h3>Members</h3>
   <div data-bind="foreach: members()">
-    <div class="row">
-    <ul class="thumbnails list-unstyled">
-      <li class="span3">
-        <div class="thumbnail" style="padding: 0">
-          <div style="padding:4px">
-            <img alt="100x150" style="width: 100%" src="http://placehold.it/100x150">
-          </div>
-          <div class="caption">
-            <h2 data-bind="text: name">Name</h2>
-            <p>This description</p>
-          </div>
-          <div class="modal-footer" style="text-align: left">
-            <div class="row-fluid">
-            </div>
-          </div>
-        </div>
-      </li>
-    </ul>
+    <div class="member">
+      <h5 data-bind="text: name"></h5>
+    </div>
   </div>
+  <!-- /ko -->
   </div>
 </div>
-<!--</div>-->

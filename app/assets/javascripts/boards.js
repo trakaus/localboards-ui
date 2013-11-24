@@ -18,6 +18,7 @@ var BoardListViewModel = function() {
 
 var BoardViewModel = function() {
 	this.id = ko.observable();
+	this.localUrl = ko.observable();
 	this.title = ko.observable();
 	this.duties = ko.observable();
 	this.qualifications = ko.observable();
@@ -35,29 +36,46 @@ var BoardViewModel = function() {
 	this.openings = ko.observableArray();
 };
 
+function toTitleCase(str)
+{
+	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 
-function writeData (obj, data) {
-	obj.id = data.id;
-	obj.title = data.title;
-	obj.duties = data.duties;
-	obj.qualifications = data.qualifications;
-	obj.createdAt = data.created_at;
-	obj.isActive = data.is_active;
-	obj.size = data.seats;
-	obj.url = data.url;
-	obj.termLength = data.term_length;
-	obj.updatedAt = data.updated_at;
-	obj.meetingDates = data.meeting_dates;
-	obj.meetingPlace = data.meeting_place;
-	obj.meetingTime = data.meeting_time;
-	obj.openSeats = 0;
-	obj.members = data.members;
-	obj.openings = data.openings;
+var getLocation = function(href) {
+    var l = document.createElement("a");
+    l.href = href;
+    return l;
+};
+
+function buildLocalUrl (id) {
+	return 'http://' + getLocation(window.location).hostname + '/boards/' + id;
+}
+
+function writeData (data) {
+	vm.id(data.id);
+	this.localUrl = buildLocalUrl(data.id);
+	vm.title(toTitleCase(data.title));
+	vm.duties(data.duties);
+	vm.qualifications(data.qualifications);
+	vm.createdAt(data.created_at);
+	vm.isActive(data.is_active);
+	vm.size(data.seats);
+	vm.url(data.url);
+	vm.termLength(data.term_length);
+	vm.updatedAt(data.updated_at);
+	vm.meetingDates(data.meeting_dates);
+	vm.meetingPlace(data.meeting_place);
+	vm.meetingTime(data.meeting_time);
+	vm.openSeats(0);
+	//vm.members(data.members);
+	vm.members([{name: "John Doe"}, {name: "Jane Doe"}]);
+	vm.openings(data.openings);
 }
 
 var createNewBoard = function(data) {
 	this.id = data.id;
-	this.title = data.title;
+	this.localUrl = buildLocalUrl(data.id);
+	this.title = toTitleCase(data.title);
 	this.duties = data.duties;
 	this.qualifications = data.qualifications;
 	this.createdAt = data.created_at;
@@ -76,17 +94,14 @@ var createNewBoard = function(data) {
 
 function onBoardListRequest(success, message, data) {
 	if (success) {
-		alert(data);
-		jQuery.each(data, function() {
-
+		$.each(data, function() {
 			vm.addBoard(new createNewBoard(this));
 		});
 	}
 }
 function onBoardRequest(success, message, data) {
 	if (success) {
-		alert(data);
-		vm = new createNewBoard(data);
+		writeData(data.data);
 	}
 }
 
@@ -104,9 +119,9 @@ if (isNaN(url[url.length - 1]) === true) {
 	ko.applyBindings(vm);
 
 	var id = url[url.length - 1];
-	//var apiBoard = api.getBoardFromStateWithId('ne', id);
-
-	/*writeData(vm, {
+	var apiBoard = api.getBoardFromStateWithId('ne', id);
+	/*
+	vm = writeData(vm, {
 		id: id,
 		title: "Board A",
 		duties: "Review and approves applications for Air Conditioning/Air Distribution licensing and continuing education of Master and Journeyman Installers. Certifies examination scores, addresses complaints/misuses against license holders.",
@@ -122,6 +137,7 @@ if (isNaN(url[url.length - 1]) === true) {
 		meeting_time: "2013-11-24T13:30:00Z",
 		members: [{name: "John Doe"}],
 		openings: [{date: "2013-11-24", position: "Grunt"}, {date: "2013-11-24", position: "Peon"}]
-	});*/
+	});
+*/
 }
 
