@@ -23,6 +23,31 @@
 				if( plugin.onBoardRequest ) {
 					plugin.onBoardRequest( success, message, data );
 				}
+			},
+			onBoardMemberListRequest: function( success, message, data ) {
+				if( plugin.onBoardMemberListRequest ) {
+					plugin.onBoardMemberListRequest( success, message, data );
+				}
+			},
+			onBoardMemberRequest: function( success, message, data ) {
+				if( plugin.onBoardMemberRequest ) {
+					plugin.onBoardMemberRequest( success, message, data );
+				}
+			},
+			onBoardSeatListRequest: function( success, message, data ) {
+				if( plugin.onBoardSeatListRequest ) {
+					plugin.onBoardSeatListRequest( success, message, data );
+				}
+			},
+			onBoardSeatRequest: function( success, message, data ) {
+				if( plugin.onBoardSeatRequest ) {
+					plugin.onBoardSeatRequest( success, message, data );
+				}
+			},
+			onMemberRequest: function( success, message, data ) {
+				if( plugin.onMemberRequest ) {
+					plugin.onMemberRequest( success, message, data );
+				}
 			}
 		};
 
@@ -48,7 +73,7 @@
 				error:function(xhr,status,error) {
 					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
 								 'Response: '+xhr.responseText;
-					alert('get counties: ' + notice);
+					plugin.settings.onCountyListRequest(false, notice, null);
 				}
 			});
 		};
@@ -71,7 +96,7 @@
 				error:function(xhr,status,error) {
 					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
 								 'Response: '+xhr.responseText;
-					alert('get counties: ' + notice);
+					plugin.settings.onCountyRequest(false, notice, null);
 				}
 			});
 		};
@@ -94,7 +119,7 @@
 				error:function(xhr,status,error) {
 					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
 								 'Response: '+xhr.responseText;
-					alert('get counties: ' + notice);
+					plugin.settings.onBoardListRequest(false, notice, null);
 				}
 			});
 		};
@@ -117,7 +142,7 @@
 				error:function(xhr,status,error) {
 					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
 								 'Response: '+xhr.responseText;
-					alert('get counties: ' + notice);
+					plugin.settings.onBoardListRequest(false, notice, null);
 				}
 			});
 		};
@@ -140,7 +165,7 @@
 				error:function(xhr,status,error) {
 					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
 								 'Response: '+xhr.responseText;
-					alert('get counties: ' + notice);
+					plugin.settings.onBoardListRequest(false, notice, null);
 				}
 			});
 		};
@@ -163,7 +188,7 @@
 				error:function(xhr,status,error) {
 					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
 								 'Response: '+xhr.responseText;
-					alert('get counties: ' + notice);
+					plugin.settings.onBoardRequest(false, notice, null);
 				}
 			});
 		};
@@ -186,10 +211,309 @@
 				error:function(xhr,status,error) {
 					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
 								 'Response: '+xhr.responseText;
-					alert('get counties: ' + notice);
+					plugin.settings.onBoardRequest(false, notice, null);
 				}
 			});
 		};
+		
+		plugin.getBoardMemberListFromCityBoardById = functoin( state, city, id, pageIndex, pageSize ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/cities/'+city+'/boards/'+id+'/members?pg='+pageIndex+'&pgSize='+pageSize,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardMemberListRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardMemberListRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardMemberListRequest(false, notice, null);
+				}
+			});
+		}
+		
+		plugin.getBoardMemberFromCityBoardById = functoin( state, city, boardId, id ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/cities/'+city+'/boards/'+boardId+'/members/'+id,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardMemberRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardMemberRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardMemberRequest(false, notice, null);
+				}
+			});
+		}
+		
+		plugin.getBoardMemberListFromCountyBoardById = functoin( state, county, id, pageIndex, pageSize ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/counties/'+county+'/boards/'+id+'/members?pg='+pageIndex+'&pgSize='+pageSize,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardMemberListRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardMemberListRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardMemberListRequest(false, notice, null);
+				}
+			});
+		}
+		
+		plugin.getBoardMemberFromCountyBoardById = functoin( state, county, boardId, id ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/counties/'+county+'/boards/'+boardId+'/members/'+id,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardMemberRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardMemberRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardMemberRequest(false, notice, null);
+				}
+			});
+		}
+		
+		plugin.getBoardMemberListFromStateBoardById = functoin( state, id, pageIndex, pageSize ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/boards/'+id+'?pg='+pageIndex+'&pgSize='+pageSize,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardMemberListRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardMemberListRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardMemberListRequest(false, notice, null);
+				}
+			});
+		}
+
+		plugin.getBoardMemberFromStateBoardById = functoin( state, boardId ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/boards/'+boardId+'/members/'+id,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardMemberRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardMemberRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardMemberRequest(false, notice, null);
+				}
+			});
+		}
+		
+		plugin.getBoardSeatListFromCityBoardById = functoin( state, city, id, pageIndex, pageSize ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/cities/'+city+'/boards/'+id+'/seats?pg='+pageIndex+'&pgSize='+pageSize,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardSeatListRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardSeatListRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardSeatListRequest(false, notice, null);
+				}
+			});
+		}
+		
+		plugin.getBoardSeatFromCityBoardById = functoin( state, city, boardId, id ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/cities/'+city+'/boards/'+boardId+'/seats/'+id,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardSeatRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardSeatRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardSeatRequest(false, notice, null);
+				}
+			});
+		}
+		
+		plugin.getBoardSeatListFromCountyBoardById = functoin( state, county, id, pageIndex, pageSize ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/counties/'+county+'/boards/'+id+'/seats?pg='+pageIndex+'&pgSize='+pageSize,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardSeatListRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardSeatListRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardSeatListRequest(false, notice, null);
+				}
+			});
+		}
+		
+		plugin.getBoardSeatFromCountyBoardById = functoin( state, county, boardId, id ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/counties/'+county+'/boards/'+boardId+'/seats/'+id,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardSeatRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardSeatRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardSeatRequest(false, notice, null);
+				}
+			});
+		}
+		
+		plugin.getBoardSeatListFromStateBoardById = functoin( state, id, pageIndex, pageSize ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/boards/'+id+'?pg='+pageIndex+'&pgSize='+pageSize,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardSeatListRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardSeatListRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardSeatListRequest(false, notice, null);
+				}
+			});
+		}
+
+		plugin.getBoardSeatFromStateBoardById = functoin( state, boardId ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/boards/'+boardId+'/seats/'+id,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardSeatRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardSeatRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardSeatRequest(false, notice, null);
+				}
+			});
+		}
+
+		plugin.getMemberFromStateById = functoin( state, id ) {
+			$.ajax({
+				type:"GET",
+				crossDomain: true,
+				accept:"application/json",
+				contentType:"application/json",
+				url:plugin.settings.domain+"/states/"+state+'/members/'+id,
+				dataType:"json",
+				success:function(data) {
+					if(data.success) {
+						plugin.settings.onBoardMemberRequest(true, data.message, data.data);
+					} else {
+						plugin.settings.onBoardMemberRequest(false, data.message, null);
+					}
+				},
+				error:function(xhr,status,error) {
+					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
+								 'Response: '+xhr.responseText;
+					plugin.settings.onBoardMemberRequest(false, notice, null);
+				}
+			});
+		}
 
 		var init = function( ) {
 			plugin.settings = $.extend({}, defaults);
