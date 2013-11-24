@@ -72,8 +72,11 @@
     <!-- ko if: members().length > 0-->
     <h3>Members</h3>
     <div data-bind="foreach: members()">
-      <div class="member">
-        <h5 data-bind="text: name"></h5>
+      <div class="member" data-bind="with: person()">
+        <span class="memberName" data-bind="text: fullName"></span>
+        <!-- ko if: $parent.appointedDate -->
+        (Appointed: <span data-bind="text: $parent.appointedDate"></span>)
+        <!-- /ko -->
       </div>
     </div>
     <!-- /ko -->

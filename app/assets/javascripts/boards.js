@@ -45,12 +45,10 @@ var BoardViewModel = function() {
 	self.seats = ko.observableArray();
 
 	self.addSeat = function (data) {
-		//alert(JSON.stringify(data));
 		if (this.seats)
 			this.seats.push(data);
 	};
 	self.addMember = function (data) {
-		//alert(JSON.stringify(data));
 		this.members.push(data);
 	};
 };
@@ -112,7 +110,7 @@ var createNewBoardMember = function(data) {
 	this.isActive = data.is_active;
 	this.installationDate = data.installation_date;
 	this.appointmentDate = data.appointment_date;
-	this.person = ko.observable(); // will be updated with later API call
+	this.person = ko.observable();
 };
 var createNewPerson = function(data) {
 	// id, created_at, updated_at, first_name, last_name, is_active
@@ -121,6 +119,9 @@ var createNewPerson = function(data) {
 	this.firstName = data.first_name;
 	this.lastName = data.last_name;
 	this.isActive = data.is_active;
+	this.fullName = ko.computed(function() {
+		return this.firstName + ' ' + this.lastName;
+	}, this);
 };
 var createNewSeat = function(data) {
 	// alternate","board_id","created_at","id","is_active","period","qualifications","term_notes","updated_at"
@@ -168,8 +169,8 @@ var createNewBoard = function(data) {
 };
 
 function updateMemberWithPersonData (data) {
-	$.each(vm.members, function() {
-		if (this.id === data.id) {
+	$.each(vm.members(), function() {
+		if (this.memberId === data.id) {
 			this.person(new createNewPerson(data));
 		}
 	});
@@ -194,10 +195,8 @@ function onBoardRequest(success, message, data) {
 function onBoardMemberListRequest(success, message, data) {
 	if (success) {
 		$.each(data, function() {
-			//alert(JSON.stringify(this));
-			var boardMember = new createNewBoardMember(this);
-			vm.addMember(boardMember);
-			var apiMemberInfo = api.getMemberFromStateById('ne', this.id);
+			vm.addMember(new createNewBoardMember(this));
+			api.getMemberFromStateById('ne', this.id);
 		});
 	}
 }

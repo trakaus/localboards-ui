@@ -502,15 +502,15 @@
 				dataType:"json",
 				success:function(data) {
 					if(data.success) {
-						plugin.settings.onBoardMemberRequest(true, data.message, data.data);
+						plugin.settings.onMemberRequest(true, data.message, data.data);
 					} else {
-						plugin.settings.onBoardMemberRequest(false, data.message, null);
+						plugin.settings.onMemberRequest(false, data.message, null);
 					}
 				},
 				error:function(xhr,status,error) {
 					var notice = 'Status['+xhr.status+'] '+xhr.statusText+"\n\n"+
 								 'Response: '+xhr.responseText;
-					plugin.settings.onBoardMemberRequest(false, notice, null);
+					plugin.settings.onMemberRequest(false, notice, null);
 				}
 			});
 		};
