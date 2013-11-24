@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require knockout-3.0.0
 //= require twitter/bootstrap
+//= require api-localboards

@@ -1,8 +1,10 @@
 LocalboardsUi::Application.routes.draw do
+
   resources :members
 
-
   resources :boards
+
+  root :to => 'boards#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
