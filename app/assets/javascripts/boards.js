@@ -207,14 +207,11 @@ function onBoardMemberListRequest(success, message, data) {
 }
 function onBoardSeatListRequest(success, message, data) {
 	if (success) {
-		$.each(data, function() {
-			//alert(JSON.stringify(this));
-			if (this) {
-				var seat = new createNewSeat(this);
-				if (seat)
-					vm.addSeat(seat);
-			}
-		});
+
+		for(var ele=0;ele<data;ele++ {
+			vm.addSeat( new createNewSeat(data[ele]) );
+		}
+
 		//var apiMembers = api.getBoardMemberListFromStateBoardById('ne', id, 0, 1000);
 	}
 }
