@@ -15,6 +15,16 @@
             <div class="modal-footer" style="text-align: left">
               <div class="row-fluid">
                 <div class="span4"><b data-bind="text: size">1</b><br/><small>SEATS</small></div>
+                <div class="span4">
+                <!-- ko if: isActive -->
+                <b>IS</b>
+                <!-- /ko -->
+                <!-- ko ifnot: isActive -->
+                <b>NOT</b>
+                <!-- /ko -->
+                <br />
+                <small>ACTIVE</small>
+                </div>
               </div>
             </div>
           </div>
@@ -26,9 +36,18 @@
 <div class="rightColumn">
   <div class="orgInfo">
     <h3>Meeting Info</h3>
+    <!-- ko if: url() -->
+    URL: <a data-bind="attr: { href: url }">Visit Website</a><br />
+    <!-- /ko -->
     Meeting dates: <span data-bind="text: meetingDates">N/A</span><br />
     Meeting place: <span data-bind="text: meetingPlace">N/A</span><br />
     Meeting times: <span data-bind="text: meetingTime">N/A</span>
+  </div>
+  <div class="qualifications">
+    <!-- ko if: qualifications() -->
+    <h3>Qualifications to Apply</h3>
+    <span data-bind="text: qualifications">Qualifications ...</span>
+    <!-- /ko -->
   </div>
   <div class="openings">
     <!-- ko if: openings().length > 0-->

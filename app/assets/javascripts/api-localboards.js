@@ -215,8 +215,8 @@
 				}
 			});
 		};
-		
-		plugin.getBoardMemberListFromCityBoardById = functoin( state, city, id, pageIndex, pageSize ) {
+
+		plugin.getBoardMemberListFromCityBoardById = function( state, city, id, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -238,8 +238,8 @@
 				}
 			});
 		}
-		
-		plugin.getBoardMemberFromCityBoardById = functoin( state, city, boardId, id ) {
+
+		plugin.getBoardMemberFromCityBoardById = function( state, city, boardId, id ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -261,8 +261,8 @@
 				}
 			});
 		}
-		
-		plugin.getBoardMemberListFromCountyBoardById = functoin( state, county, id, pageIndex, pageSize ) {
+
+		plugin.getBoardMemberListFromCountyBoardById = function( state, county, id, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -284,8 +284,8 @@
 				}
 			});
 		}
-		
-		plugin.getBoardMemberFromCountyBoardById = functoin( state, county, boardId, id ) {
+
+		plugin.getBoardMemberFromCountyBoardById = function( state, county, boardId, id ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -307,8 +307,8 @@
 				}
 			});
 		}
-		
-		plugin.getBoardMemberListFromStateBoardById = functoin( state, id, pageIndex, pageSize ) {
+
+		plugin.getBoardMemberListFromStateBoardById = function( state, id, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -331,7 +331,7 @@
 			});
 		}
 
-		plugin.getBoardMemberFromStateBoardById = functoin( state, boardId ) {
+		plugin.getBoardMemberFromStateBoardById = function( state, boardId ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -353,8 +353,8 @@
 				}
 			});
 		}
-		
-		plugin.getBoardSeatListFromCityBoardById = functoin( state, city, id, pageIndex, pageSize ) {
+
+		plugin.getBoardSeatListFromCityBoardById = function( state, city, id, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -376,8 +376,8 @@
 				}
 			});
 		}
-		
-		plugin.getBoardSeatFromCityBoardById = functoin( state, city, boardId, id ) {
+
+		plugin.getBoardSeatFromCityBoardById = function( state, city, boardId, id ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -399,8 +399,8 @@
 				}
 			});
 		}
-		
-		plugin.getBoardSeatListFromCountyBoardById = functoin( state, county, id, pageIndex, pageSize ) {
+
+		plugin.getBoardSeatListFromCountyBoardById = function( state, county, id, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -422,8 +422,8 @@
 				}
 			});
 		}
-		
-		plugin.getBoardSeatFromCountyBoardById = functoin( state, county, boardId, id ) {
+
+		plugin.getBoardSeatFromCountyBoardById = function( state, county, boardId, id ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -445,8 +445,8 @@
 				}
 			});
 		}
-		
-		plugin.getBoardSeatListFromStateBoardById = functoin( state, id, pageIndex, pageSize ) {
+
+		plugin.getBoardSeatListFromStateBoardById = function( state, id, pageIndex, pageSize ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -469,7 +469,7 @@
 			});
 		}
 
-		plugin.getBoardSeatFromStateBoardById = functoin( state, boardId ) {
+		plugin.getBoardSeatFromStateBoardById = function( state, boardId ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,
@@ -492,7 +492,7 @@
 			});
 		}
 
-		plugin.getMemberFromStateById = functoin( state, id ) {
+		plugin.getMemberFromStateById = function( state, id ) {
 			$.ajax({
 				type:"GET",
 				crossDomain: true,

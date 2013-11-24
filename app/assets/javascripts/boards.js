@@ -9,9 +9,6 @@ var BoardListViewModel = function() {
 	var self = this;
 
 	self.boards = ko.observableArray();
-	self.board = ko.observable();
-	self.board.members = ko.observableArray();
-	self.board.openings = ko.observableArray();
 
 	self.addBoard = function(data) {
 		this.boards.push(data);
@@ -43,10 +40,10 @@ var BoardViewModel = function() {
 	this.openSeats = ko.observable();
 	this.members = ko.observableArray();
 	this.openings = ko.observableArray();
+	this.seats = ko.observableArray();
 };
 
-function toTitleCase(str)
-{
+function toTitleCase(str) {
 	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
@@ -81,11 +78,38 @@ function writeData (data) {
 	vm.meetingPlace(data.meeting_place);
 	vm.meetingTime(data.meeting_time);
 	vm.openSeats(0);
-	//vm.members(data.members);
-	vm.members([{name: "John Doe"}, {name: "Jane Doe"}]);
-	vm.openings(data.openings);
+
+	vm.members([]);
+	if (data.members)
+		vm.members(data.members);
+
+	vm.openings([]);
+	if (data.openings)
+		vm.openings(data.openings);
+
+	vm.seats([]);
+	if (data.seats)
+		vm.seats(data.seats);
 }
 
+
+var createNewBoardMember = function(data) {
+	this.memberId = data.member_id;
+	this.boardId = data.board_id;
+	this.createdAt = data.created_at;
+	this.updatedAt = data.updated_at;
+	this.boardSeatId = data.board_seat_id;
+	this.isActive = data.is_active;
+	this.installationDate = data.installation_date;
+	this.appointmentDate = data.appointment_date;
+	this.person = ko.observable(); // will be updated with later API call
+};
+var createNewPerson = function(data) {
+	this.createdAt = data.created_at;
+	this.updatedAt = data.updated_at;
+	this.firstName = data.first_name;
+	this.lastName = data.last_name;
+};
 var createNewBoard = function(data) {
 	this.id = data.id;
 	this.localUrl = buildLocalUrl(data.id);
@@ -108,9 +132,21 @@ var createNewBoard = function(data) {
 	this.meetingPlace = data.meeting_place;
 	this.meetingTime = data.meeting_time;
 	this.openSeats = 0;
-	this.members = data.members;
-	this.openings = data.openings;
+	this.members = [];
+	this.openings = [];
 };
+
+function addMember (data) {
+	vm.members.push(new createNewBoardMember(data));
+}
+
+function updateMemberWithPersonData (data) {
+	$.each(vm.members, function() {
+		if (this.id === data.id) {
+			this.person(new createNewPerson(data));
+		}
+	});
+}
 
 /*
  * Tie in API callbacks from api.localboards.org
@@ -127,8 +163,24 @@ function onBoardRequest(success, message, data) {
 		writeData(data.data);
 	}
 }
+function onBoardMemberListRequest(success, message, data) {
+	if (success) {
+		$.each(data, function() {
+			addMember(data);
+			//var apiMemberInfo = api.getMemberById(data.member_id);
+		});
+	}
+}
+function onMemberRequest(success, message, data) {
+	if (success) {
+		updateMemberWithPersonData(data);
+	}
+}
+
 api.onBoardListRequest = onBoardListRequest;
 api.onBoardRequest = onBoardRequest;
+api.onBoardMemberListRequest = onBoardMemberListRequest;
+api.onMemberRequest = onMemberRequest;
 
 // if we have a numeric (:id) value at end of path, we're querying a specific element
 if (isNaN(url[url.length - 1]) === true || id.length === 0) {
@@ -139,5 +191,6 @@ if (isNaN(url[url.length - 1]) === true || id.length === 0) {
 	vm = new BoardViewModel();
 	ko.applyBindings(vm);
 	var apiBoard = api.getBoardFromStateWithId('ne', id);
+	//var apiMembers = api.getBoardMembersByBoardId(id);
 }
 
