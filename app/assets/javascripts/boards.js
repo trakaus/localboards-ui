@@ -52,7 +52,8 @@ var BoardViewModel = function() {
 			var openingArr = self.nextOpening().split('|');
 			var openingQualArr = self.nextOpeningQualifications().split('|');
 			for (var i = 0; i < self.nextOpening().length; i++) {
-				rval.push({opening: openingArr[i], qualifications: openingQualArr[i]});
+				if (openingArr[i] && openingQualArr[i])
+					rval.push({opening: openingArr[i], qualifications: openingQualArr[i]});
 			}
 			return rval;
 		} else {
@@ -133,15 +134,10 @@ function writeData (data) {
 	vm.meetingCron(data.meeting_cron);
 	vm.nextOpening(data.next_opening);
 	vm.nextOpeningQualifications(data.next_opening_qual);
-	alert(vm.nextOpening());
 
 	vm.members([]);
 	if (data.members)
 		vm.members(data.members);
-
-	vm.openings([]);
-	if (data.openings)
-		vm.openings(data.openings);
 }
 
 
