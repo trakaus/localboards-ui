@@ -112,6 +112,9 @@ var createNewBoard = function(data) {
 	this.openings = data.openings;
 };
 
+/*
+ * Tie in API callbacks from api.localboards.org
+ */
 function onBoardListRequest(success, message, data) {
 	if (success) {
 		$.each(data, function() {
@@ -124,13 +127,11 @@ function onBoardRequest(success, message, data) {
 		writeData(data.data);
 	}
 }
-
 api.onBoardListRequest = onBoardListRequest;
 api.onBoardRequest = onBoardRequest;
 
 // if we have a numeric (:id) value at end of path, we're querying a specific element
-if (isNaN(url[url.length - 1]) === true) {
-	alert('all boards');
+if (isNaN(url[url.length - 1]) === true || id.length === 0) {
 	vm = new BoardListViewModel();
 	ko.applyBindings(vm);
 	var apiBoards = api.getBoardsByState('ne', 0, 25);
