@@ -2,6 +2,8 @@
 // All this logic will automatically be available in application.js.
 var vm = null;
 var api = new $.LocalBoardsAPI();
+var url = window.location.pathname.split('/');
+var id = url[url.length - 1];
 
 var BoardListViewModel = function() {
 	var self = this;
@@ -19,6 +21,13 @@ var BoardListViewModel = function() {
 var BoardViewModel = function() {
 	this.id = ko.observable();
 	this.localUrl = ko.observable();
+
+	this.cityId = ko.observable();
+	this.countyId = ko.observable();
+	this.stateId = ko.observable();
+	this.alternatingSeats = ko.observable();
+	this.departmentId = ko.observable();
+
 	this.title = ko.observable();
 	this.duties = ko.observable();
 	this.qualifications = ko.observable();
@@ -53,7 +62,12 @@ function buildLocalUrl (id) {
 
 function writeData (data) {
 	vm.id(data.id);
-	this.localUrl = buildLocalUrl(data.id);
+	vm.localUrl = buildLocalUrl(data.id);
+	vm.cityId(data.city_id);
+	vm.countyId(data.county_id);
+	vm.stateId(data.state_id);
+	vm.alternatingSeats(data.alternating_seats);
+	vm.departmentId(data.department_id);
 	vm.title(toTitleCase(data.title));
 	vm.duties(data.duties);
 	vm.qualifications(data.qualifications);
@@ -75,6 +89,12 @@ function writeData (data) {
 var createNewBoard = function(data) {
 	this.id = data.id;
 	this.localUrl = buildLocalUrl(data.id);
+
+	this.cityId = data.city_id;
+	this.countyId = data.county_id;
+	this.stateId = data.state_id;
+	this.alternatingSeats = data.alternating_seats;
+	this.departmentId = data.department_id;
 	this.title = toTitleCase(data.title);
 	this.duties = data.duties;
 	this.qualifications = data.qualifications;
@@ -108,36 +128,15 @@ function onBoardRequest(success, message, data) {
 api.onBoardListRequest = onBoardListRequest;
 api.onBoardRequest = onBoardRequest;
 
-var url = window.location.pathname.split( '/' );
 // if we have a numeric (:id) value at end of path, we're querying a specific element
 if (isNaN(url[url.length - 1]) === true) {
+	alert('all boards');
 	vm = new BoardListViewModel();
 	ko.applyBindings(vm);
 	var apiBoards = api.getBoardsByState('ne', 0, 25);
 } else {
 	vm = new BoardViewModel();
 	ko.applyBindings(vm);
-
-	var id = url[url.length - 1];
 	var apiBoard = api.getBoardFromStateWithId('ne', id);
-	/*
-	vm = writeData(vm, {
-		id: id,
-		title: "Board A",
-		duties: "Review and approves applications for Air Conditioning/Air Distribution licensing and continuing education of Master and Journeyman Installers. Certifies examination scores, addresses complaints/misuses against license holders.",
-		qualifications: '',
-		created_at: '',
-		is_active: '',
-		url: '',
-		term_length: '',
-		updated_at: '',
-		seats: 5,
-		meeting_dates: "First Tuesday of each month",
-		meeting_place: "Planning Department Central Conference Room, 11th Floor",
-		meeting_time: "2013-11-24T13:30:00Z",
-		members: [{name: "John Doe"}],
-		openings: [{date: "2013-11-24", position: "Grunt"}, {date: "2013-11-24", position: "Peon"}]
-	});
-*/
 }
 

@@ -24,7 +24,7 @@
 					plugin.onBoardRequest( success, message, data );
 				}
 			}
-		}
+		};
 
 		var plugin = this;
 
@@ -51,7 +51,7 @@
 					alert('get counties: ' + notice);
 				}
 			});
-		}
+		};
 
 		plugin.getCounty = function( state, county ) {
 			$.ajax({
@@ -74,7 +74,7 @@
 					alert('get counties: ' + notice);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardsByState = function( state, pageIndex, pageSize ) {
 			$.ajax({
@@ -97,7 +97,7 @@
 					alert('get counties: ' + notice);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardsByCity = function( state, city, pageIndex, pageSize ) {
 			$.ajax({
@@ -120,7 +120,7 @@
 					alert('get counties: ' + notice);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardsByCounty = function( state, county, pageIndex, pageSize ) {
 			$.ajax({
@@ -143,7 +143,7 @@
 					alert('get counties: ' + notice);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardFromCountyWithId = function( state, county, id ) {
 			$.ajax({
@@ -166,7 +166,7 @@
 					alert('get counties: ' + notice);
 				}
 			});
-		}
+		};
 
 		plugin.getBoardFromStateWithId = function( state, id ) {
 			$.ajax({
@@ -189,12 +189,12 @@
 					alert('get counties: ' + notice);
 				}
 			});
-		}
+		};
 
 		var init = function( ) {
 			plugin.settings = $.extend({}, defaults);
-		}
+		};
 
 		init();
-	}
+	};
 })(jQuery);
