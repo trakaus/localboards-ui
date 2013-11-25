@@ -24,13 +24,9 @@ the [Heroku](http://heroku.com) cloud.
 The source code
 ---------------
 
-Front end web user interface for humans: 
-
-https://github.com/trakaus/localboards-ui
-
-Back end REST API for computers: 
-
-https://github.com/noahkoch/OrgOrg
+github repositories:
+* https://github.com/trakaus/localboards-ui - Front end web user interface for humans
+* https://github.com/noahkoch/OrgOrg - Back end REST API for computers
 
 The front end merely hits the back and then makes it pretty for humans. 
 
