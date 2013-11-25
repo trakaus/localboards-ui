@@ -26,25 +26,25 @@ The source code
 
 Front end web user interface for humans: 
 
-    https://github.com/trakaus/localboards-ui
+https://github.com/trakaus/localboards-ui
 
 Back end REST API for computers: 
 
-    https://github.com/noahkoch/OrgOrg
+https://github.com/noahkoch/OrgOrg
 
 The front end merely hits the back and then makes it pretty for humans. 
 
 Computers hit the back end directly. e.g.:
 
-    http://api.localboards.org/states/NE/boards/2
+http://api.localboards.org/states/NE/boards/2
     
 The back end is documented (extremely poorly by me (Jay Hannah)) here:
 
-    http://api.localboards.org/docs/
+http://api.localboards.org/docs/
 
 You can create / fix those docs by adding things here:
 
-    https://github.com/noahkoch/OrgOrg/tree/master/public/docs/specs
+https://github.com/noahkoch/OrgOrg/tree/master/public/docs/specs
 
 Please do!
 
