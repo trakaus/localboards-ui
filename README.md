@@ -49,6 +49,7 @@ The Hack Omaha 2013 Team
 ------------------------
 
 * Jay Hannah @deafferret http://jays.net jay@jays.net
+* Mitch Barry @mitchbarry http://google.com/+MitchellBarry
 * ...hey guys, add yourselves!
 
 
