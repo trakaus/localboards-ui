@@ -48,9 +48,13 @@ Please do!
 The Hack Omaha 2013 Team
 ------------------------
 
-* Jay Hannah @deafferret http://jays.net jay@jays.net
 * Mitch Barry @mitchbarry http://google.com/+MitchellBarry
-* ...hey guys, add yourselves!
+* Cody Winchester cjwinchester@gmail.com 
+* Ryan Walker w.ryan.walker@gmail.com 
+* Dave Burchell evaddnomaid@gmail.com
+* lora.frecks@gmail.com
+* Noah Koch noahtkoch@gmail.com
+* Jay Hannah @deafferret http://jays.net jay@jays.net
 
 
 Other contributors
