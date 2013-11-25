@@ -3,7 +3,7 @@ localboards.org
 
 Welcome. This is the user interface of localboards.org. For example:
 
-http://douglas.ne.localboards.org/boards/ - All the City of Omaha government boards. (Omaha, Nebraska, USA) 
+http://douglas.ne.localboards.org/boards/ - All the City of Omaha government boards. (Douglas county, Nebraska, USA) 
 
 This website was created by volunteers during [HackOmaha 2013](https://twitter.com/HackOmaha), a civic coding event.
 
