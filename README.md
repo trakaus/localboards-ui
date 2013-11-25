@@ -45,16 +45,16 @@ https://github.com/noahkoch/OrgOrg/tree/master/public/docs/specs
 Please do!
 
 
-The Hack Omaha 2013 Team
+Our Hack Omaha 2013 Team
 ------------------------
 
 * Mitch Barry @mitchbarry http://google.com/+MitchellBarry
-* Cody Winchester cjwinchester@gmail.com 
-* Ryan Walker w.ryan.walker@gmail.com 
 * Dave Burchell evaddnomaid@gmail.com
 * lora.frecks@gmail.com
-* Noah Koch noahtkoch@gmail.com
 * Jay Hannah @deafferret http://jays.net jay@jays.net
+* Noah Koch noahtkoch@gmail.com
+* Ryan Walker w.ryan.walker@gmail.com 
+* Cody Winchester cjwinchester@gmail.com 
 
 
 Other contributors
