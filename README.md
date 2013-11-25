@@ -17,12 +17,12 @@ were exported and are available [here](https://github.com/noahkoch/OrgOrg/tree/m
 Those sheets are read by [seeds.rb](https://github.com/noahkoch/OrgOrg/blob/master/db/seeds.rb) which loads the data
 into the database. 
 
-There are two tiers in this stack. Both are writen in [Ruby on Rails](http://rubyonrails.org/) and deployed to 
-the [Heroku](http://heroku.com) cloud.
-
 
 The source code
 ---------------
+
+There are two tiers in this stack. Both are writen in [Ruby on Rails](http://rubyonrails.org/) and deployed to 
+the [Heroku](http://heroku.com) cloud.
 
 github repositories:
 * https://github.com/trakaus/localboards-ui - Front end web user interface for humans
