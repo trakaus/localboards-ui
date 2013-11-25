@@ -1,7 +1,7 @@
-localboards-ui
-==============
+localboards.org
+===============
 
-Welcome. This repository is the user interface of localboards.org. For example:
+Welcome. This is the user interface of localboards.org. For example:
 
 http://douglas.ne.localboards.org/boards/ - All the City of Omaha government boards. (Omaha, Nebraska, USA) 
 
