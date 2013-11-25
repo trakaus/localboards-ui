@@ -60,5 +60,5 @@ The Hack Omaha 2013 Team
 Other contributors
 ------------------
 
-You! Fork this project on github and send us pull requests!
+You! Fork this project and send us pull requests!
 
