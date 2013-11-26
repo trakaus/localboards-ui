@@ -7,6 +7,7 @@ http://douglas.ne.localboards.org/boards/ - All the City of Omaha government boa
 
 This website was created by volunteers during [HackOmaha 2013](https://twitter.com/HackOmaha), a civic coding event.
 
+The API can be forked at https://github.com/noahkoch/OrgOrg
 
 The data
 --------
@@ -32,17 +33,14 @@ The front end merely hits the back and then makes it pretty for humans.
 
 Computers hit the back end directly. e.g.:
 
-http://api.localboards.org/states/NE/boards/2
+<tt>http://api.localboards.org/states/NE/boards/2</tt>
     
 The back end is documented (extremely poorly by me (Jay Hannah)) here:
 
-http://api.localboards.org/docs/
+<tt>http://api.localboards.org/docs/</tt>
 
-You can create / fix those docs by adding things here:
-
-https://github.com/noahkoch/OrgOrg/tree/master/public/docs/specs
-
-Please do!
+[You can contribute to building out our API specs](https://github.com/noahkoch/OrgOrg/tree/master/public/docs/specs)
+by following the ones written on the [API README](https://github.com/noahkoch/OrgOrg/blob/master/README.md)
 
 
 Our Hack Omaha 2013 Team
@@ -52,7 +50,7 @@ Our Hack Omaha 2013 Team
 * Dave Burchell evaddnomaid@gmail.com
 * lora.frecks@gmail.com
 * Jay Hannah @deafferret http://jays.net jay@jays.net
-* Noah Koch noahtkoch@gmail.com
+* Noah Koch @noahkoch noahtkoch@gmail.com
 * Ryan Walker w.ryan.walker@gmail.com 
 * Cody Winchester cjwinchester@gmail.com 
 
