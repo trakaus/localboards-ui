@@ -19,6 +19,7 @@ Say, you want to fork and contribute to these projects....
 <pre>
 	domain: 'http://localhost:3001',
 </pre>
+
     a. rails s 
 4. Now in another terminal window...
 4. cd ..
