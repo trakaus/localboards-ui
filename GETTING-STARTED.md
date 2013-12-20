@@ -24,9 +24,9 @@ Say, you want to fork and contribute to these projects....
 4. Now in another terminal window...
 4. cd ..
 5. cd api-localboards-org
-    a. bundle install
-    a. rake db:create 
-    a. rake db:migrate
-    a. rake db:seed
-    a. rails s -p 3001
+   a. bundle install
+   a. rake db:create 
+   a. rake db:migrate
+   a. rake db:seed
+   a. rails s -p 3001
 
