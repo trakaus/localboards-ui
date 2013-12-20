@@ -16,10 +16,7 @@ Say, you want to fork and contribute to these projects....
     a. Now we need to point localboards-ui at the backend
        i. vim app/assets/javascripts/api-localboards.js
        i. line four to look like this:
-<pre>
-	domain: 'http://localhost:3001',
-</pre>
-
+           ```domain: 'http://localhost:3001',```
     a. rails s 
 4. Now in another terminal window...
 4. cd ..
@@ -29,4 +26,5 @@ Say, you want to fork and contribute to these projects....
    a. rake db:migrate
    a. rake db:seed
    a. rails s -p 3001
+
 
