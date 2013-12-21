@@ -7,7 +7,7 @@ http://douglas.ne.localboards.org/boards/ - All the City of Omaha government boa
 
 This website was created by volunteers during [HackOmaha 2013](https://twitter.com/HackOmaha), a civic coding event.
 
-The API can be forked at https://github.com/noahkoch/OrgOrg
+The API can be forked at https://github.com/noahkoch/api-localboards-org
 
 The data
 --------
@@ -23,7 +23,7 @@ The source code
 ---------------
 
 There are two tiers in this stack. Both are writen in [Ruby on Rails](http://rubyonrails.org/) and deployed to 
-the [Heroku](http://heroku.com) cloud.
+the [Heroku](http://heroku.com) butt.
 
 github repositories:
 * https://github.com/trakaus/localboards-ui - Front end web user interface for humans
