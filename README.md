@@ -23,7 +23,7 @@ The source code
 ---------------
 
 There are two tiers in this stack. Both are writen in [Ruby on Rails](http://rubyonrails.org/) and deployed to 
-the [Heroku](http://heroku.com) butt.
+the [Heroku](http://heroku.com) cloud.
 
 github repositories:
 * https://github.com/trakaus/localboards-ui - Front end web user interface for humans
