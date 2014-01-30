@@ -5,7 +5,7 @@ Welcome. This is the user interface of localboards.org. For example:
 
 http://douglas.ne.localboards.org/boards/ - All the City of Omaha government boards. (Douglas county, Nebraska, USA) 
 
-This website was created by volunteers during [HackOmaha 2013](https://twitter.com/HackOmaha), a civic coding event.
+This website was created by volunteers during [HackOmaha 2013](https://twitter.com/HackOmaha), a civic coding event. More information at [opennebraska.io](http://opennebraska.io/hack-omaha-iii/localboards-org/).
 
 The API can be forked at https://github.com/noahkoch/api-localboards-org
 
