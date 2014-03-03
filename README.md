@@ -51,7 +51,7 @@ Our Hack Omaha 2013 Team
 * lora.frecks@gmail.com
 * Jay Hannah @deafferret http://jays.net jay@jays.net
 * Noah Koch @noahkoch noahtkoch@gmail.com
-* Ryan Walker w.ryan.walker@gmail.com 
+* Ryan Walker @zenrandd w.ryan.walker@gmail.com 
 * Cody Winchester cjwinchester@gmail.com 
 
 
