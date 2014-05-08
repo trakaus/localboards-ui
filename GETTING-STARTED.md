@@ -28,3 +28,4 @@ Say, you want to fork and contribute to these projects....
    1. rails s -p 3001
 
 
+(on Windows, you will run into problems with the gem 'therubyracer' included in the API project. My recommendation is trying out Vagrant, running a *nix VM, using MacOS, or looking into [this alternative](https://github.com/hiranpeiris/therubyracer_for_windows).)

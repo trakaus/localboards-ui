@@ -14,9 +14,9 @@ The data
 
 The data was (mostly) discovered in .pdf files spread all over the Internet. 2 team members spent 2 full days 
 scraping information out of those documents and organizing it into a shared Google Drive spreadsheet. Those sheets
-were exported and are available [here](https://github.com/noahkoch/OrgOrg/tree/master/db/human_data_entry).
-Those sheets are read by [seeds.rb](https://github.com/noahkoch/OrgOrg/blob/master/db/seeds.rb) which loads the data
-into the database. 
+were exported and are available [here](https://github.com/noahkoch/api-localboards-org/tree/master/db/human_data_entry).
+Those sheets are read by [seeds.rb](https://github.com/noahkoch/api-localboards-org/blob/master/db/seeds.rb) which 
+loads the data into the database. 
 
 
 The source code
@@ -51,7 +51,7 @@ Our Hack Omaha 2013 Team
 * lora.frecks@gmail.com
 * Jay Hannah @deafferret http://jays.net jay@jays.net
 * Noah Koch @noahkoch noahtkoch@gmail.com
-* Ryan Walker w.ryan.walker@gmail.com 
+* Ryan Walker @zenrandd w.ryan.walker@gmail.com 
 * Cody Winchester cjwinchester@gmail.com 
 
 
